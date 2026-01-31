@@ -1,0 +1,27 @@
+name: تشغيل مصنع الفيديوهات
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: استدعاء الكود
+        uses: actions/checkout@v3
+
+      - name: تجهيز بايثون
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: تثبيت المكتبات
+        run: pip install -r requirements.txt
+
+      - name: تشغيل المصنع
+        run: python main.py
+
+      - name: تحميل الفيديو الناتج
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-result
+          path: video.mp4
