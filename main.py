@@ -1,11 +1,19 @@
 from moviepy.editor import ColorClip
+import random
 
-print("🎬 بدء تشغيل المصنع...")
+print("🚀 جاري تشغيل المصنع لإنتاج 20 فيديو...")
 
-# فيديو مدته 5 ثواني (خلفية زرقاء)
-clip = ColorClip(size=(1080, 1920), color=(0, 0, 100), duration=5)
+# تكرار العملية 20 مرة
+for i in range(1, 21):
+    # لون عشوائي لكل فيديو
+    color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    
+    # اسم الملف يتغير (video_1, video_2...)
+    filename = f"video_{i}.mp4"
+    
+    # إنشاء الفيديو (مدة 2 ثانية ليكون سريعاً)
+    clip = ColorClip(size=(1080, 1920), color=color, duration=2)
+    clip.write_videofile(filename, fps=24)
+    print(f"✅ تم صنع: {filename}")
 
-# حفظ الفيديو
-clip.write_videofile("video.mp4", fps=24)
-
-print("✅ تم بنجاح! الفيديو جاهز.")
+print("🎉 انتهى! جميع الفيديوهات جاهزة.")
