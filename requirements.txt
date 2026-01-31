@@ -1,0 +1,6 @@
+moviepy==1.0.3
+numpy
+imageio==2.9.0
+decorator==4.4.2
+pillow
+tqdm
