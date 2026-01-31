@@ -1,4 +1,4 @@
-name: Video Factory
+name: Video Maker Bot
 
 on: workflow_dispatch
 
@@ -17,10 +17,10 @@ jobs:
       - name: Install Libraries
         run: pip install -r requirements.txt
 
-      - name: Run Factory
+      - name: Run Script
         run: python main.py
 
-      - name: Upload Video
+      - name: Upload Result
         uses: actions/upload-artifact@v4
         with:
           name: video-result
