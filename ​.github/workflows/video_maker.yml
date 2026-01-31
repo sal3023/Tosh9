@@ -1,4 +1,4 @@
-name: Video Generator
+name: Video Factory
 
 on: workflow_dispatch
 
@@ -14,10 +14,10 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install Dependencies
+      - name: Install Libraries
         run: pip install -r requirements.txt
 
-      - name: Run Script
+      - name: Run Factory
         run: python main.py
 
       - name: Upload Video
