@@ -1,4 +1,4 @@
-name: تشغيل مصنع الفيديوهات
+name: Video Generator
 
 on: workflow_dispatch
 
@@ -6,21 +6,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: استدعاء الكود
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: تجهيز بايثون
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: تثبيت المكتبات
+      - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: تشغيل المصنع
+      - name: Run Script
         run: python main.py
 
-      - name: تحميل الفيديو الناتج
+      - name: Upload Video
         uses: actions/upload-artifact@v4
         with:
           name: video-result
