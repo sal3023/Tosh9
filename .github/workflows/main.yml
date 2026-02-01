@@ -1,14 +1,16 @@
-name: Professional Video Generator
+name: Super Video Bot
 
 on:
-  workflow_dispatch: # زر التشغيل اليدوي
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout content
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -16,23 +18,23 @@ jobs:
         with:
           python-version: '3.9'
 
-      # تثبيت أدوات الفيديو الضرورية (الحل لمشكلة الشاشة الزرقاء)
-      - name: Install System Dependencies
+      - name: Install Tools (FFmpeg)
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg imagemagick libmagick++-dev
-          # إصلاح مشكلة النصوص في ImageMagick
+          sudo apt-get install -y ffmpeg imagemagick
+          # إصلاح إعدادات ImageMagick
           sudo sed -i 's/none/read,write/g' /etc/ImageMagick-6/policy.xml
 
-      - name: Install Python Libraries
+      - name: Install Libraries
         run: |
-          pip install moviepy numpy requests pillow
+          pip install moviepy requests
 
-      - name: Generate Professional Video
+      - name: Run Video Maker
         run: python video_maker.py
 
-      - name: Upload Video Artifact
+      - name: Upload The Video
         uses: actions/upload-artifact@v4
         with:
-          name: Professional-Video-HD
+          name: The-Final-Video
           path: output_video.mp4
+          
